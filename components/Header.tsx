@@ -2,8 +2,13 @@ import { Text, View } from "react-native"
 import { LinearGradient } from 'expo-linear-gradient'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome5'
+import { useContext } from "react"
+import { AuthContext } from "../contexts/authContext"
 
 export const Header = () => {
+
+    const auth = useContext(AuthContext)
+
     return(
         <View className="w-full bg-[#f9f9f9] gap-3 py-5 px-8 border-b border-stone-500 mb-5">
             <View className="flex-row justify-between">
@@ -23,7 +28,7 @@ export const Header = () => {
                 </LinearGradient>
             </View>
 
-            <Text>3 ano A</Text>
+            <Text>3 ANO A</Text>
         </View>
     )
 }

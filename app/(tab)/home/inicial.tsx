@@ -1,21 +1,25 @@
-import { SafeAreaView, Text, StatusBar, View, FlatList } from "react-native";
+import { SafeAreaView, Text, StatusBar, View } from "react-native";
 import { Header } from "../../../components/Header";
 import { LinearGradient } from "expo-linear-gradient";
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import { GridItem } from "../../../components/GridItem";
 import { router } from "expo-router";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/authContext";
 
 export default function screen() {
 
     let homeList = [
-        {icon: 'graduation-cap', title: 'Disciplinas', onPress: () => router.push('/disciplinas')},
+        {icon: 'graduation-cap', title: 'Disciplinas', onPress: () => router.push('/home/disciplinas')},
         {icon: 'id-card-clip', title: 'Turma', onPress: () => router.push('/home/turma')},
         {icon: 'calendar-days', title: 'Calendário', onPress: () => router.push('/calendario')},
-        {icon: 'bullhorn', title: 'Comunicados', onPress: () => router.push('/comunicados')},
+        {icon: 'bullhorn', title: 'Comunicados', onPress: () => router.push('/home/comunicados')},
     ]
 
+    const user = useContext(AuthContext)
+
     return(
-        <SafeAreaView style={{ marginTop: StatusBar.currentHeight || 0}} className="">
+        <SafeAreaView style={{ marginTop: StatusBar.currentHeight || 0}}>
             <Header />
             
             <View className=" w-full px-8">
@@ -28,7 +32,7 @@ export default function screen() {
                         className="px-5 py-2 relative overflow-hidden"
                     >
                         <View>
-                            <Text className="text-white text-xl">Arthur Gabriel</Text>
+                            <Text className="text-white text-xl">{user.authData?.NomeUsuario}</Text>
                             <Text className="text-[#EBEBF599]">19 anos</Text>
                         </View>
 
